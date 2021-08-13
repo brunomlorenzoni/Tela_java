@@ -9,13 +9,13 @@ public class TesteEntrada {
     public static void main(String[] args) {
         
         try{
-            InputStream stream = new FileInputStream("C:\\Users\\lab201a\\Desktop\\atividades\\Usuario.txt");    
+            InputStream stream = new FileInputStream("C:\\Users\\rh02\\Desktop\\NetBeans\\telinha\\login.txt");    
             InputStreamReader reader = new InputStreamReader(stream);
             BufferedReader buffer = new BufferedReader(reader);
             
             String linha = " ";
             while((linha = buffer.readLine())!= null){
-                System.out.println("linha");
+                System.out.println(linha);
             }
             buffer.close();
             

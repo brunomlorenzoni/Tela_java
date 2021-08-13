@@ -11,7 +11,7 @@ public class TesteSaida {
     public static void main(String[] args) {
         
         try{
-            OutputStream stream = new FileOutputStream("C:\\Users\\lab201a\\Desktop\\atividades\\Usuario.txt");
+            OutputStream stream = new FileOutputStream("C:\\Users\\rh02\\Desktop\\NetBeans\\telinha\\login.txt");
             OutputStreamWriter writer = new OutputStreamWriter(stream);
             BufferedWriter buffer = new BufferedWriter(writer);
             

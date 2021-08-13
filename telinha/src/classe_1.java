@@ -3,6 +3,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,11 +25,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class classe_1 extends JFrame{
     
-    private JTextField txfEmail;
+    private JTextField txfLogin;
     private JTextField txfSenha;
-    private JLabel lblEmail;
+    private JLabel lblLogin;
+    private JLabel lblSenha;
     private JButton btnValidar;
-    private JTable tblEmails;
+    private JTable tblLogins;
     private DefaultTableModel model;
     private JScrollPane scroll;
     
@@ -34,6 +43,22 @@ public class classe_1 extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(null);
+        
+        try{
+            InputStream stream = new FileInputStream("C:\\Users\\rh02\\Desktop\\NetBeans\\telinha\\login.txt");    
+            InputStreamReader reader = new InputStreamReader(stream);
+            BufferedReader buffer = new BufferedReader(reader);
+            
+            String linha = " ";
+            while((linha = buffer.readLine())!= null){
+                System.out.println(linha);
+            }
+            buffer.close();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
         
         
         componentesCriar();
@@ -56,13 +81,17 @@ public class classe_1 extends JFrame{
     
     private void componentesCriar(){
         
-        lblEmail = new JLabel("email:");
-        lblEmail.setBounds(10,10,50,25);
-        getContentPane().add(lblEmail);
+        lblLogin = new JLabel("Login:");
+        lblLogin.setBounds(10,10,50,25);
+        getContentPane().add(lblLogin);
         
-        txfEmail = new JTextField();
-        txfEmail.setBounds(65, 10, 150, 25);
-        getContentPane().add(txfEmail);
+        txfLogin = new JTextField();
+        txfLogin.setBounds(60, 10, 150, 25);
+        getContentPane().add(txfLogin);
+        
+        lblSenha = new JLabel("Senha:");
+        lblSenha.setBounds(250, 10, 50, 25);
+        getContentPane().add(lblSenha);
         
         txfSenha = new JTextField();
         txfSenha.setBounds(300, 10, 150, 25);
@@ -74,33 +103,33 @@ public class classe_1 extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 System.out.println("validação");
                 
-                final String email = txfEmail.getText();
+                final String email = txfLogin.getText();
                 final String senha = txfSenha.getText();
                 
                 
                 if(email.equalsIgnoreCase("Administrador") && senha.equalsIgnoreCase("Administrador")){
                     model.addRow(new String[] {String.valueOf(model.getRowCount()+1), email, senha});
-                    txfEmail.setText(null);
-                    txfEmail.requestFocus();
+                    txfLogin.setText(null);
+                    txfLogin.requestFocus();
                     txfSenha.setText(null);
                     txfSenha.requestFocus();
                     JOptionPane.showMessageDialog(null, "cadastrado com sucesso");
                 }else if(email.equalsIgnoreCase("Adm") && senha.equalsIgnoreCase("Adm123")){
                     model.addRow(new String[] {String.valueOf(model.getRowCount()+1), email, senha});
-                    txfEmail.setText(null);
-                    txfEmail.requestFocus();
+                    txfLogin.setText(null);
+                    txfLogin.requestFocus();
                     txfSenha.setText(null);
                     txfSenha.requestFocus();
                 }else if(email.equalsIgnoreCase("Administrator") && senha.equalsIgnoreCase("7410")){
                    model.addRow(new String[] {String.valueOf(model.getRowCount()+1), email, senha});
-                    txfEmail.setText(null);
-                    txfEmail.requestFocus();
+                    txfLogin.setText(null);
+                    txfLogin.requestFocus();
                     txfSenha.setText(null);
                     txfSenha.requestFocus();
                 }else if(email.equalsIgnoreCase("Root") && senha.equalsIgnoreCase("un3scr3m0ta+()")){
                    model.addRow(new String[] {String.valueOf(model.getRowCount()+1), email, senha});
-                    txfEmail.setText(null);
-                    txfEmail.requestFocus();
+                    txfLogin.setText(null);
+                    txfLogin.requestFocus();
                     txfSenha.setText(null);
                     txfSenha.requestFocus();
                 }
@@ -110,7 +139,7 @@ public class classe_1 extends JFrame{
            
             }
         });
-        btnValidar.setBounds(65, 40, 250, 25);
+        btnValidar.setBounds(500, 10, 80, 25);
         getContentPane().add(btnValidar);
         
         model = new DefaultTableModel();
@@ -118,11 +147,26 @@ public class classe_1 extends JFrame{
         model.addColumn("login");
         model.addColumn("Senha");
         
-        tblEmails = new JTable(model);
-        scroll = new JScrollPane(tblEmails);
+        tblLogins = new JTable(model);
+        scroll = new JScrollPane(tblLogins);
         scroll.setBounds(10, 70, 775, 300);
         getContentPane().add(scroll);
         
+        
+        try{
+            OutputStream stream = new FileOutputStream("C:\\Users\\rh02\\Desktop\\NetBeans\\telinha\\login.txt");
+            OutputStreamWriter writer = new OutputStreamWriter(stream);
+            BufferedWriter buffer = new BufferedWriter(writer);
+            
+            buffer.write("bruno Mariani Lorenzoni");
+            buffer.write("\r\n");
+            
+            buffer.flush();
+            buffer.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     public static void main(String[] args) {
