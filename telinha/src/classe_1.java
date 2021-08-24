@@ -2,15 +2,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -43,23 +34,6 @@ public class classe_1 extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(null);
-        
-        try{
-            InputStream stream = new FileInputStream("C:\\Users\\rh02\\Desktop\\NetBeans\\telinha\\login.txt");    
-            InputStreamReader reader = new InputStreamReader(stream);
-            BufferedReader buffer = new BufferedReader(reader);
-            
-            String linha = " ";
-            while((linha = buffer.readLine())!= null){
-                System.out.println(linha);
-            }
-            buffer.close();
-            
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        
         
         componentesCriar();
         
@@ -151,26 +125,17 @@ public class classe_1 extends JFrame{
         scroll = new JScrollPane(tblLogins);
         scroll.setBounds(10, 70, 775, 300);
         getContentPane().add(scroll);
-        
-        
-        try{
-            OutputStream stream = new FileOutputStream("C:\\Users\\rh02\\Desktop\\NetBeans\\telinha\\login.txt");
-            OutputStreamWriter writer = new OutputStreamWriter(stream);
-            BufferedWriter buffer = new BufferedWriter(writer);
-            
-            buffer.write("bruno Mariani Lorenzoni");
-            buffer.write("\r\n");
-            
-            buffer.flush();
-            buffer.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+       
     }
     
     public static void main(String[] args) {
         
+        System.out.println("teste");
+        String aux;
+        
+        aux = JOptionPane.showInputDialog("Informe o tamanho do vetor: ");
+        
+        System.out.println("teste"+ aux);
         new classe_1().setVisible(true);
         
     }
